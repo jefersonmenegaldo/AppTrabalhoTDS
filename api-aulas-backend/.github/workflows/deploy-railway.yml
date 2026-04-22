@@ -1,0 +1,56 @@
+name: Deploy API no Railway
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy no Railway
+        shell: bash
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_SERVICE: ${{ vars.RAILWAY_SERVICE }}
+          RAILWAY_PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
+          RAILWAY_ENVIRONMENT: ${{ vars.RAILWAY_ENVIRONMENT }}
+          RAILWAY_DEPLOY_PATH: ${{ vars.RAILWAY_DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+
+          DEPLOY_PATH="${RAILWAY_DEPLOY_PATH:-.}"
+          echo "Deploy path: ${DEPLOY_PATH}"
+          cd "${DEPLOY_PATH}"
+
+          CMD=(railway up --ci)
+
+          if [ -n "${RAILWAY_SERVICE:-}" ]; then
+            CMD+=(--service "${RAILWAY_SERVICE}")
+          fi
+
+          if [ -n "${RAILWAY_PROJECT_ID:-}" ]; then
+            if [ -z "${RAILWAY_ENVIRONMENT:-}" ]; then
+              echo "ERRO: quando RAILWAY_PROJECT_ID for definido, RAILWAY_ENVIRONMENT tambem deve ser definido."
+              exit 1
+            fi
+            CMD+=(--project "${RAILWAY_PROJECT_ID}" --environment "${RAILWAY_ENVIRONMENT}")
+          fi
+
+          echo "Executando: ${CMD[*]}"
+          "${CMD[@]}"
