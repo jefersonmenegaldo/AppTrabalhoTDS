@@ -34,7 +34,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          DEPLOY_PATH="${RAILWAY_DEPLOY_PATH:-.}"
+          # Monorepo: API fica em api-aulas-backend (ajuste RAILWAY_DEPLOY_PATH no GitHub se necessario)
+          DEPLOY_PATH="${RAILWAY_DEPLOY_PATH:-api-aulas-backend}"
           echo "Deploy path: ${DEPLOY_PATH}"
           cd "${DEPLOY_PATH}"
 

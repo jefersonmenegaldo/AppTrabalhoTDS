@@ -20,9 +20,10 @@ Quando voce fizer `git push` na branch `main`, o GitHub Actions executa o workfl
 - executa `railway up --ci`,
 - publica nova versao da API no Railway.
 
-Workflow criado neste repositorio:
+Workflow criado na **raiz do repositorio** (monorepo com `api-aulas-backend` e `mobile-app`):
 
-- `.github/workflows/deploy-railway.yml`
+- `../.github/workflows/deploy-railway.yml` (caminho relativo a partir da pasta `api-aulas-backend`)
+- ou `.github/workflows/deploy-railway.yml` quando voce abre o repositorio pela raiz
 
 ---
 
@@ -118,7 +119,7 @@ O que isso faz:
 Ainda em **Secrets and variables** -> **Actions**, aba **Variables**, voce pode criar:
 
 - `RAILWAY_SERVICE` -> nome do servico da API no Railway (ex.: `api-aulas-backend`)
-- `RAILWAY_DEPLOY_PATH` -> caminho do codigo a subir (use `.` neste repo)
+- `RAILWAY_DEPLOY_PATH` -> caminho do codigo a subir (padrao: `api-aulas-backend` na raiz do monorepo; so defina se mudar a pasta)
 - `RAILWAY_PROJECT_ID` -> ID do projeto Railway (opcional)
 - `RAILWAY_ENVIRONMENT` -> nome do ambiente (ex.: `production`; obrigatorio se usar `RAILWAY_PROJECT_ID`)
 
@@ -134,7 +135,7 @@ Quando usar cada uma:
 
 Arquivo:
 
-- `.github/workflows/deploy-railway.yml`
+- `.github/workflows/deploy-railway.yml` (na raiz do repositorio)
 
 Disparos:
 
@@ -198,7 +199,7 @@ Sem etapas manuais extras, a menos que mude variaveis de ambiente ou banco.
 
 ## Monorepo (codigo da API em subpasta)
 
-- Defina `RAILWAY_DEPLOY_PATH` com a pasta da API (ex.: `api-aulas-backend`).
+- Defina `RAILWAY_DEPLOY_PATH` com a pasta da API se nao for `api-aulas-backend` (ex.: outro nome de pasta).
 
 ---
 

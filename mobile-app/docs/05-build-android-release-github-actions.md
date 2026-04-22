@@ -7,7 +7,7 @@ Este guia configura automacao para:
 
 Arquivos criados para automacao:
 
-- `.github/workflows/build-android-release.yml`
+- `../.github/workflows/build-android-release.yml` (na raiz do repositorio; relativo a `mobile-app/`)
 - `eas.json`
 
 ## O que a automacao faz

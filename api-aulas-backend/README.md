@@ -126,7 +126,7 @@ Projeto irmão que consome esta API (login + tutoriais de consumo de endpoints):
 ## Deploy automatico (Railway + GitHub Actions)
 
 - Guia completo: `docs/deploy/railway-github-actions.md`
-- Workflow: `.github/workflows/deploy-railway.yml`
+- Workflow (na raiz do repositorio): `../.github/workflows/deploy-railway.yml`
 
 ## Tutoriais praticos (passo a passo)
 

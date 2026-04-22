@@ -7,7 +7,7 @@ Este fluxo e separado do EAS cloud e foi criado para o cenario:
 
 Workflow:
 
-- `.github/workflows/build-android-native-apk.yml`
+- `../.github/workflows/build-android-native-apk.yml` (na raiz do repositorio)
 
 ## O que esse workflow faz
 
