@@ -5,24 +5,24 @@ Objetivo: criar `GET /api/pessoas` para listar todas as pessoas.
 ## Resultado esperado
 
 - Retorna lista de pessoas em JSON
-- Aceita query opcional `name` para filtro simples
+- Aceita query opcional `nome` para filtro simples
 
 ## Passo 1 - Repository
 
 Atualize `src/repositories/pessoaRepository.js` com:
 
 ```js
-async function listpessoas({ name }) {
-  if (name) {
+async function listpessoas({ nome }) {
+  if (nome) {
     const [rows] = await db.query(
-      "SELECT id, name, email, age, created_at FROM pessoas WHERE name LIKE ? ORDER BY id DESC",
-      [`%${name}%`]
+      "SELECT id, nome, email, idade, created_at FROM pessoas WHERE nome LIKE ? ORDER BY id DESC",
+      [`%${nome}%`]
     );
     return rows;
   }
 
   const [rows] = await db.query(
-    "SELECT id, name, email, age, created_at FROM pessoas ORDER BY id DESC"
+    "SELECT id, nome, email, idade, created_at FROM pessoas ORDER BY id DESC"
   );
   return rows;
 }
@@ -49,7 +49,7 @@ Atualize `src/controllers/pessoaController.js`:
 ```js
 async function listpessoas(req, res, next) {
   try {
-    const pessoas = await pessoaService.listpessoas({ name: req.query.name });
+    const pessoas = await pessoaService.listpessoas({ nome: req.query.nome });
     return res.json(pessoas);
   } catch (error) {
     return next(error);
@@ -77,7 +77,7 @@ router.get("/", pessoaController.listpessoas);
 ### Listagem com filtro
 
 - Metodo: `GET`
-- URL: `http://localhost:3000/api/pessoas?name=mar`
+- URL: `http://localhost:3000/api/pessoas?nome=mar`
 
 ## Observacao didatica
 

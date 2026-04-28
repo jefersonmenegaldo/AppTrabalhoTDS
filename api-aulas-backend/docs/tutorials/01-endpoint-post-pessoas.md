@@ -4,7 +4,7 @@ Objetivo: criar `POST /api/pessoas` para cadastrar uma pessoa no MySQL.
 
 ## Resultado esperado
 
-- Recebe JSON com `name`, `email`, `age`
+- Recebe JSON com `nome`, `email`, `idade`
 - Valida campos basicos
 - Salva no banco
 - Retorna `201 Created` com pessoa criada
@@ -16,13 +16,13 @@ Crie o arquivo `src/repositories/pessoaRepository.js`:
 ```js
 const db = require("../config/db");
 
-async function createPessoa({ name, email, age }) {
+async function createPessoa({ nome, email, idade }) {
   const [result] = await db.query(
-    "INSERT INTO pessoas (name, email, age) VALUES (?, ?, ?)",
-    [name, email, age]
+    "INSERT INTO pessoas (nome, email, idade) VALUES (?, ?, ?)",
+    [nome, email, idade]
   );
 
-  return { id: result.insertId, name, email, age };
+  return { id: result.insertId, nome, email, idade };
 }
 
 async function findByEmail(email) {
@@ -42,15 +42,15 @@ Crie `src/services/pessoaService.js`:
 ```js
 const pessoaRepository = require("../repositories/pessoaRepository");
 
-function validatePayload({ name, email, age }) {
-  if (!name || !email || age === undefined) {
-    const error = new Error("name, email e age sao obrigatorios");
+function validatePayload({ nome, email, idade }) {
+  if (!nome || !email || idade === undefined) {
+    const error = new Error("nome, email e idade sao obrigatorios");
     error.statusCode = 400;
     throw error;
   }
 
-  if (typeof age !== "number" || age < 0) {
-    const error = new Error("age deve ser numero maior ou igual a zero");
+  if (typeof idade !== "number" || idade < 0) {
+    const error = new Error("idade deve ser numero maior ou igual a zero");
     error.statusCode = 400;
     throw error;
   }
@@ -129,21 +129,21 @@ Request:
 
 ```json
 {
-  "name": "Maria",
+  "nome": "Maria",
   "email": "maria@email.com",
-  "age": 22
+  "idade": 22
 }
 ```
 
 Resposta esperada:
 
 - Status `201`
-- JSON com `id`, `name`, `email`, `age`
+- JSON com `id`, `nome`, `email`, `idade`
 
 ## Erros que devem acontecer (didatica)
 
 - Campo faltando -> `400`
-- `age` invalido -> `400`
+- `idade` invalido -> `400`
 - Email repetido -> `409`
 
 Esses testes ajudam a explicar regra de negocio para os alunos.

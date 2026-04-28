@@ -17,7 +17,7 @@ Objetivo: completar CRUD da entidade `pessoas`.
 ```js
 async function findById(id) {
   const [rows] = await db.query(
-    "SELECT id, name, email, age, created_at FROM pessoas WHERE id = ?",
+    "SELECT id, nome, email, idade, created_at FROM pessoas WHERE id = ?",
     [id]
   );
   return rows[0] || null;
@@ -64,10 +64,10 @@ router.get("/:id", pessoaController.getPessoaById);
 ### Repository
 
 ```js
-async function updatePessoa(id, { name, email, age }) {
+async function updatePessoa(id, { nome, email, idade }) {
   await db.query(
-    "UPDATE pessoas SET name = ?, email = ?, age = ? WHERE id = ?",
-    [name, email, age, id]
+    "UPDATE pessoas SET nome = ?, email = ?, idade = ? WHERE id = ?",
+    [nome, email, idade, id]
   );
 }
 ```

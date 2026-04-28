@@ -24,6 +24,10 @@ src/
   services/      # Regras de negocio
   app.js         # Configura app Express
   server.js      # Sobe o servidor
+public/
+  landing.html   # Pagina inicial (landing do produto) em GET /
+  api-docs.html  # Documentacao rapida da API em GET /api
+  css/landing.css
 sql/
   init.sql       # Script de criacao do banco/tabela
 ```
@@ -51,6 +55,11 @@ source sql/init.sql;
 ```bash
 npm run dev
 ```
+
+## Paginas web (HTML)
+
+- `GET /` — landing page do produto (app mobile + API); edite `public/landing.html` e `public/css/landing.css`
+- `GET /api` — documentacao rapida dos endpoints (antiga pagina inicial)
 
 ## Endpoints disponiveis
 

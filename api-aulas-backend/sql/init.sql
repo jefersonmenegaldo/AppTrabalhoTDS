@@ -17,3 +17,7 @@ SELECT
 WHERE NOT EXISTS (
   SELECT 1 FROM usuarios WHERE email = 'admin@aulas.com'
 );
+
+/*Nome: Admin Padrao
+/*Email: admin@aulas.com
+/*Hash: bcrypt de 123456

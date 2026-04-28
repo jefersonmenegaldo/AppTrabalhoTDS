@@ -1,0 +1,228 @@
+<!doctype html>
+<!-- Pagina servida em GET / (rota definida em src/app.js). Edite textos e secoes aqui; estilos em /css/landing.css -->
+<html lang="pt-BR">
+  <head>
+    <!-- Codificacao e largura em dispositivos moveis (obrigatorio para responsividade) -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Texto curto usado por buscadores e ao compartilhar o link (SEO / redes) -->
+    <meta
+      name="description"
+      content="Conecte sua turma ao backend em poucos minutos — app mobile + API didatica."
+    />
+    <!-- Titulo que aparece na aba do navegador -->
+    <title>Aulas Connect — App mobile + API para educacao</title>
+    <!-- Conexao antecipada com o Google Fonts (acelera o carregamento das fontes) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fontes: DM Sans (texto) e Sora (titulos) — troque a URL se quiser outra combinacao -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=Sora:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Folha de estilos da landing (public/css/landing.css, servida em /css/landing.css) -->
+    <link rel="stylesheet" href="/css/landing.css" />
+  </head>
+  <body>
+    <!-- Cabecalho fixo no topo: logo + links de navegacao (ancoras #recursos, #telas, #precos) -->
+    <header class="site-header">
+      <div class="container nav">
+        <a href="#" class="brand" aria-label="Aulas Connect">
+          <span class="brand-mark" aria-hidden="true">📱</span>
+          <span>Aulas Connect</span>
+        </a>
+        <nav class="nav-links" aria-label="Secoes">
+          <a href="#recursos">Recursos</a>
+          <a href="#telas">Telas</a>
+          <a href="#precos">Precos</a>
+          <a href="/api">Docs da API</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Secao hero: titulo principal, texto de apoio, botoes (CTA) e imagem de destaque -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Produto didatico</p>
+          <h1>O app mobile que leva sua API para a sala de aula</h1>
+          <p class="lead">
+            Experiencia completa com <strong>login</strong>, <strong>cadastro</strong> e integracao com
+            backend Node.js + MySQL — pronta para evoluir com novos modulos e tutoriais.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#precos">Ver planos</a>
+            <a class="btn btn-ghost" href="/api">Documentacao da API</a>
+          </div>
+        </div>
+        <div class="hero-mock" role="img" aria-label="Pessoa usando smartphone em contexto de estudo">
+          <img
+            src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&h=720&fit=crop&q=80"
+            width="900"
+            height="720"
+            alt="Ilustracao: mao segurando smartphone com tela visivel"
+            loading="eager"
+          />
+          <div class="hero-badge">
+            <span class="pulse" aria-hidden="true"></span>
+            <span>Conectado a API &middot; pronto para login e listagens</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tres colunas de funcionalidades; cada <article> e um "card" (classe .feature-card) -->
+    <section id="recursos" class="section">
+      <div class="container">
+        <h2 class="section-title">Tudo o que o professor precisa explicar integracao de ponta a ponta</h2>
+        <p class="section-desc">
+          A base e didatica, mas a arquitetura e real: servicos HTTP, autenticacao, persistencia e
+          boas praticas de pastas.
+        </p>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🔐</div>
+            <h3>Autenticacao com JWT</h3>
+            <p>Login e cadastro com token seguro — ideal para ensinar fluxo de sessao e headers.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">📡</div>
+            <h3>API Node.js + MySQL</h3>
+            <p>Rotas em camadas — facil mostrar o caminho requisicao → regra de negocio → banco.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">📱</div>
+            <h3>App em React Native (Expo)</h3>
+            <p>Mesma linguagem (JavaScript) no mobile; otimo para a turma crescer em unico ecossistema.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria de imagens de exemplo (URLs Unsplash); troque src por arquivos em /public se preferir -->
+    <section id="telas" class="section">
+      <div class="container">
+        <h2 class="section-title">Galeria de ideias (imagens de exemplo)</h2>
+        <p class="section-desc">
+          Use estas imagens como referencia de mood para os alunos. Troque as URLs no HTML quando
+          tiverem prints reais do app.
+        </p>
+        <div class="screens">
+          <div class="screen-tile">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&q=80"
+              alt="Dashboard em notebook — dados e metricas"
+              width="600"
+              height="400"
+              loading="lazy"
+            />
+            <div class="screen-caption">Tela de visao geral (exemplo de mood)</div>
+          </div>
+          <div class="screen-tile">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop&q=80"
+              alt="Pessoas colaborando em reuniao"
+              width="600"
+              height="400"
+              loading="lazy"
+            />
+            <div class="screen-caption">Trabalho em grupo / projeto integrado</div>
+          </div>
+          <div class="screen-tile">
+            <img
+              src="https://images.unsplash.com/photo-1504384305090-4161e0abed7e?w=600&h=400&fit=crop&q=80"
+              alt="Foco e estudo com notebook"
+              width="600"
+              height="400"
+              loading="lazy"
+            />
+            <div class="screen-caption">Estudo e entrega (exemplo)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabela de precos de exemplo: tres <article> (planos); ajuste valores e listas <ul> -->
+    <section id="precos" class="section">
+      <div class="container">
+        <h2 class="section-title">Planos de exemplo (personalizaveis)</h2>
+        <p class="section-desc">
+          Ajuste valores, nomes e lista de itens abaixo — tudo fica no arquivo
+          <code>public/landing.html</code> e <code>public/css/landing.css</code> (variacao de
+          cor em <code>:root</code> no CSS).
+        </p>
+        <div class="pricing-grid" role="list">
+          <article class="price-card" role="listitem">
+            <p class="price-name">Aula aberta</p>
+            <p class="price-value">R$ 0 <small>/ mes</small></p>
+            <p class="price-desc">Para cursos e turmas de demonstracao</p>
+            <ul class="price-list">
+              <li>App + API no repositorio</li>
+              <li>Documentacao em /api</li>
+              <li>Sem suporte comercial</li>
+            </ul>
+            <a class="btn btn-ghost" href="#telas">Comecar</a>
+          </article>
+          <article class="price-card recommended" role="listitem">
+            <span class="ribbon" aria-label="Mais usado em aula">Foco</span>
+            <p class="price-name">Sala de aula</p>
+            <p class="price-value">R$ 29 <small>/ turma / mes</small></p>
+            <p class="price-desc">Ideal para acompanhamento em grupo</p>
+            <ul class="price-list">
+              <li>Material didatico + roteiro</li>
+              <li>Exercicios de API e app</li>
+              <li>Exemplos de entrega (PR)</li>
+            </ul>
+            <a class="btn btn-primary" href="mailto:contato@escola.edu.br?subject=Aulas%20Connect">Falar conosco</a>
+          </article>
+          <article class="price-card" role="listitem">
+            <p class="price-name">Institucional</p>
+            <p class="price-value">R$ 99 <small>/ escola / mes</small></p>
+            <p class="price-desc">Multiplas turmas e personalizacao da marca</p>
+            <ul class="price-list">
+              <li>Customizacao de identidade (cores, nome)</li>
+              <li>Mais vias de contato</li>
+              <li>Deploy assistido (opcional)</li>
+            </ul>
+            <a class="btn btn-ghost" href="mailto:comercial@escola.edu.br">Solicitar proposta</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco final de convite (CTA) + link para documentacao API; estilo inline so afeta espacamento desta secao -->
+    <section class="section" style="padding-top: 0; border: none">
+      <div class="container">
+        <div class="cta-block">
+          <h2>Pronto para a proxima aula de integracao?</h2>
+          <p>Veja a documentacao tecnica dos endpoints e comece o laboratorio hoje.</p>
+          <div class="cta-row" style="justify-content: center">
+            <a class="btn btn-primary" href="/api">Abrir documentacao da API</a>
+            <a class="btn btn-ghost" href="https://github.com" rel="noopener noreferrer" target="_blank"
+              >Repositorio (ajuste o link)</a
+            >
+          </div>
+        </div>
+        <p style="text-align: center; color: var(--color-muted); font-size: 0.8rem; margin: 0">
+          Personalize nomes, precos, links e e-mails. Imagens: Unsplash (trocar quando houver
+          identidade visual propria).
+        </p>
+      </div>
+    </section>
+
+    <!-- Rodape: links uteis e ano atual (preenchido pelo <script> abaixo) -->
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          Aulas Connect — landing de exemplo servida em <a href="/">/</a> &middot; API em
+          <a href="/api">/api</a> &middot; <a href="/health">GET /health</a>
+        </p>
+        <p style="margin: 0.5rem 0 0; opacity: 0.85">© <span id="y"></span> Seu time / instituicao</p>
+      </div>
+    </footer>
+    <!-- Script minimo: insere o ano corrente no span #y (sem dependencias) -->
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

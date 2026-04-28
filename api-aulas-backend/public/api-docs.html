@@ -1,0 +1,139 @@
+<!doctype html>
+<!-- Pagina servida em GET /api — documentacao rapida dos endpoints (estilos inline neste arquivo) -->
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentacao da API — Aulas Backend</title>
+    <!-- Estilos dedicados a esta pagina (tema claro, leitura simples) — nao usa landing.css -->
+    <style>
+      /* Paleta e tema: fundo claro, texto escuro (documentacao) */
+      :root {
+        color-scheme: light;
+      }
+      /* Garante que largura (padding/border) entre na conta do tamanho do elemento */
+      * {
+        box-sizing: border-box;
+      }
+      /* Corpo: fonte do sistema, margem zerada, cores de leitura */
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        background: #f5f7fb;
+        color: #1f2937;
+      }
+      /* Largura maxima centralizada com margens laterais */
+      .container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+      }
+      /* Cada bloco de conteudo (blocos brancos com borda) */
+      .card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+      /* Titulo principal da pagina */
+      h1 {
+        margin: 0 0 8px;
+        font-size: 30px;
+      }
+      p {
+        margin: 0;
+        line-height: 1.5;
+      }
+      /* Selo visual "API online" (verde) */
+      .status {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #dcfce7;
+        color: #166534;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      /* Listas de endpoints e exemplos */
+      ul {
+        margin: 8px 0 0;
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      /* Trechos de codigo e rotas em destaque */
+      code {
+        background: #eef2ff;
+        color: #312e81;
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 90%;
+      }
+      /* Rodape discreto (versao) */
+      .footer {
+        color: #6b7280;
+        font-size: 13px;
+        margin-top: 4px;
+      }
+      /* Links (ex.: voltar para /) */
+      a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <!-- Navegacao: retorno para a landing em / -->
+      <p>
+        <a href="/">← Voltar a pagina inicial</a>
+      </p>
+      <!-- Introducao + status operacional (descritivo) -->
+      <section class="card">
+        <h1>API Aulas Backend</h1>
+        <p>
+          Projeto didatico para aulas introdutorias de backend com Node.js + MySQL.
+        </p>
+        <span class="status">API online</span>
+      </section>
+
+      <!-- Lista de rotas HTTP uteis para a turma testar (Insomnia, Postman, app) -->
+      <section class="card">
+        <h2>Endpoints principais</h2>
+        <ul>
+          <li><code>GET /health</code> — status da aplicacao</li>
+          <li><code>POST /api/auth/register</code> — cadastro de usuario</li>
+          <li><code>POST /api/auth/login</code> — login</li>
+          <li><code>POST /api/auth/cadastro</code> — alias em portugues</li>
+          <li><code>POST /api/auth/entrar</code> — alias em portugues</li>
+        </ul>
+      </section>
+
+      <!-- Exemplo de corpo JSON (mesmos campos do backend) -->
+      <section class="card">
+        <h2>Exemplo rapido de login</h2>
+        <p>Requisicao JSON para <code>POST /api/auth/login</code>:</p>
+        <ul>
+          <li><code>{ "email": "aluno@escola.com", "password": "123456" }</code></li>
+        </ul>
+      </section>
+
+      <!-- Referencia ao repositorio (arquivos Markdown e tutoriais) -->
+      <section class="card">
+        <h2>Documentacao</h2>
+        <p>
+          Consulte o arquivo <code>README.md</code> do backend e os tutoriais em
+          <code>docs/tutorials</code> no repositorio.
+        </p>
+      </section>
+
+      <p class="footer">API para aulas — documentacao 1.0</p>
+    </main>
+  </body>
+</html>

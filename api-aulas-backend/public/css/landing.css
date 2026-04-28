@@ -1,0 +1,581 @@
+/*
+  landing.css — estilos de public/landing.html (rota GET /)
+  - Personalize a aparencia em :root (cores, fontes, largura maxima)
+  - O navegador carrega este arquivo via <link href="/css/landing.css" />
+*/
+:root {
+  /* Cores: fundo, camadas, texto, destaque e sucesso */
+  --color-bg: #0a0a0f;
+  --color-surface: #12121a;
+  --color-elevated: #1a1a24;
+  --color-text: #f4f4f5;
+  --color-muted: #a1a1aa;
+  --color-accent: #6366f1;
+  --color-accent-dim: rgba(99, 102, 241, 0.2);
+  --color-success: #22c55e;
+  /* Fontes: devem bater com as importadas no <head> do landing.html */
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Sora", var(--font-sans);
+  /* Raio de bordas, sombra do card de imagem, largura max do .container */
+  --radius: 16px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  --max: 1100px;
+}
+
+/* Cada caixa “conta” o padding e a borda dentro do width/height (modelo de caixa) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Rola a pagina suavemente ao clicar em #recursos, #telas, #precos */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Corpo: ocupa a altura minima da tela; cores e legibilidade */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links herdam a cor; sem sublinhado ate o hover (evita aparencia “link antigo”) */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Imagens responsivas; border-radius leve (hero remove com seletor mais especifico) */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Largura util centralizada: margem lateral 20px em telas pequenas, max --max */
+.container {
+  width: min(100% - 40px, var(--max));
+  margin-inline: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Cabecalho fixo: fica no topo ao rolar; fundo semitransparente + desfoque     */
+/* -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Linha do menu: logo a esquerda, links a direita; quebra linha em telas estreitas */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Marca (nome + quadrado com icone/emoji) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+}
+
+/* “Logo” quadrado com gradiente (o emoji fica no HTML) */
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-accent), #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 8px 20px var(--color-accent-dim);
+}
+
+/* Grupo de links: Recursos, Telas, Precos, Docs (ancoras e /api) */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Hero: duas colunas (texto + imagem) — em mobile vira 1 coluna (media query)  */
+/* -------------------------------------------------------------------------- */
+.hero {
+  padding: 4rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* “Glow” claro atras do titulo (puro efeito visual) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% 0 40% 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99, 102, 241, 0.15), transparent);
+  pointer-events: none;
+}
+
+/* Grid: 1 coluna (texto) e ~1 coluna (imagem); gap espaca os dois blocos */
+.hero-grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+  grid-template-columns: 1fr 1.05fr;
+}
+
+/* Em telas estreitas, texto e imagem em uma unica coluna (empilhados) */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Linha pequena acima do h1 (rotulo / categoria) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* Titulo principal: tamanho fluido com clamp (adapta a largura da tela) */
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.15rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 1rem;
+}
+
+.hero p.lead {
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  max-width: 32ch;
+  margin: 0 0 1.75rem;
+}
+
+/* Botoes lado a lado; quebram em telas pequenas */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Botao generico: .btn + variante .btn-primary (preenchido) ou .btn-ghost (borda) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.35rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Acao principal (degrade + sombra) */
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  box-shadow: 0 12px 32px var(--color-accent-dim);
+}
+
+.btn-primary:hover {
+  color: #fff;
+}
+
+/* Secundario: so borda, fundo transparente */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-muted);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn-ghost:hover {
+  color: var(--color-text);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Bloco com a foto grande: proporicao 4/3, sombra, bordas arredondadas */
+.hero-mock {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow);
+  aspect-ratio: 4/3;
+}
+
+.hero-mock img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Faixa escura no rodape da imagem: texto de status (simulado) */
+.hero-badge {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: #e4e4e7;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Bolinha verde com animacao “pulso” (sugere “online") */
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  animation: pulse 2s infinite;
+}
+
+/* Keyframes usados so pelo .pulse */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Secoes genericas (#recursos, #telas, #precos): titulo + texto + conteudo      */
+/* -------------------------------------------------------------------------- */
+.section {
+  padding: 4.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* h2 da secao (fonte display) */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+/* Paragrafo introdutorio abaixo do titulo (largura limitada com ch) */
+.section-desc {
+  color: var(--color-muted);
+  max-width: 48ch;
+  margin: 0 0 2.5rem;
+  font-size: 1.05rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Galeria #telas: grid 3 colunas; 1 coluna em mobile (max-width 768px)         */
+/* -------------------------------------------------------------------------- */
+.screens {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* Tablets e phones: uma coluna para leitura vertical */
+@media (max-width: 768px) {
+  .screens {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cada “card” de screenshot: miniatura + legenda no rodape */
+.screen-tile {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  min-height: 200px;
+}
+
+/* Imagem com zoom leve no hover (efeito de destaque) */
+.screen-tile img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.screen-tile:hover img {
+  transform: scale(1.03);
+}
+
+/* Degrade escuro no rodape do tile (melhora leitura do titulo) */
+.screen-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* #recursos: cards em grid; 1 coluna em telas < 900px                        */
+/* -------------------------------------------------------------------------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* Recursos em coluna unica em telas medias */
+@media (max-width: 900px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card: fundo, borda; hover levanta e acende a borda roxa */
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.35rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.feature-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Quadrado com emoji (icone) acima do titulo do beneficio */
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  background: var(--color-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.feature-card h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* #precos: tres colunas; plano do meio pode levar .recommended + .ribbon      */
+/* -------------------------------------------------------------------------- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+/* Precos empilhados em telas medias (mesmo breakpoint dos recursos) */
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Coluna de preco: coluna flex para empurrar o botao para baixo (margin-top: auto) */
+.price-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-card.recommended {
+  background: color-mix(in srgb, var(--color-elevated) 100%, #6366f1 5%);
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 0 0 0 1px var(--color-accent-dim);
+}
+
+/* Etiqueta “Recomendado” (canto superior direito) */
+.ribbon {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: var(--color-accent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Nome do plano (Hobby / Pro / Equipe) em caixa alta */
+.price-name {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  margin: 0 0 0.25rem;
+}
+
+/* Valor grande + <small> para o periodo (/mes) */
+.price-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  margin: 0 0 0.2rem;
+}
+
+.price-value small {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+/* Uma linha de contexto abaixo do preco (ex.: “Para quem comeca”) */
+.price-desc {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
+/* Lista de beneficios: flex:1 empurra o botao para o fim do card */
+.price-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  flex: 1;
+  font-size: 0.9rem;
+  color: #d4d4d8;
+}
+
+/* Cada linha com espaco para o check a esquerda */
+.price-list li {
+  padding: 0.4rem 0 0.4rem 1.3rem;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Check verde (✓) sem usar <img> no HTML */
+.price-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-size: 0.85rem;
+}
+
+/* CTA de cada plano ocupa 100% da largura do card (ultimo flex item) */
+.price-card .btn {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Rodape e faixa CTA final (antes do footer)                                  */
+/* -------------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2.5rem 0 3rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.site-footer a {
+  color: #a1a1aa;
+}
+
+/* Bloco “Pronto para comecar?”: fundo com degrades + borda sutil */
+.cta-block {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--color-accent-dim), transparent 60%),
+    var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 0 0.5rem;
+}
+
+.cta-block h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.cta-block p {
+  color: var(--color-muted);
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+}
